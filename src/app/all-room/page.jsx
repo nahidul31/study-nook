@@ -1,11 +1,12 @@
+import RoomCart from "@/components/home-pages/allRooms/RoomCart";
 import Image from "next/image";
-import React from "react";
-import jp from "@/assets/img2/px2.jpg";
-import AddRoomForm from "@/components/allfrom/AddRoomFrom";
 
-const AddRoomPage = () => {
+import jp from "@/assets/img2/px1.jpg";
+const AllRoomDataPage = async () => {
+  const res = await fetch("http://localhost:5000/rooms");
+  const info = await res.json();
   return (
-    <div className="">
+    <div className=" ">
       <div className="relative w-full h-40 sm:h-44 overflow-hidden ">
         {/* Background Image */}
         <Image
@@ -22,15 +23,17 @@ const AddRoomPage = () => {
         {/* Text */}
         <div className="absolute inset-0 z-20 flex items-center pl-20">
           <h1 className="text-3xl md:text-4xl font-bold text-white border-b-2">
-            Add Room
+            All Room
           </h1>
         </div>
       </div>
-      <div>
-        <AddRoomForm></AddRoomForm>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 max-w-6xl mx-auto">
+        {info.map((room) => (
+          <RoomCart key={room._id} room={room}></RoomCart>
+        ))}
       </div>
     </div>
   );
 };
 
-export default AddRoomPage;
+export default AllRoomDataPage;

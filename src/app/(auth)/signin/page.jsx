@@ -116,7 +116,7 @@ const LoginPage = () => {
 
           {/* Submit */}
           <Button
-            className="w-full bg-linear-to-r from-teal-400 via-cyan-500 to-sky-500 hover:bg-orange-600 text-white font-medium rounded-xl mt-2 transition"
+            className="w-full bg-linear-to-r from-teal-400 via-cyan-500 to-sky-500 hover:bg-teal-600 text-white font-medium rounded-xl mt-2 transition"
             type="submit"
           >
             <ArrowRight />

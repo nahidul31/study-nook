@@ -36,17 +36,17 @@ export default function Banner() {
             </Chip> */}
 
             <h1 className="text-4xl sm:text-6xl md:text-5xl lg:text-6xl font-bold">
-              Stay Cool This Summer<br></br> with SunCart !
+              Find Your Perfect Study<br></br> Space, Anytime !
             </h1>
-            <p className="mt-3 pr-15">
-              Discover trending summer essentials like sunglasses, outfits,
-              skincare, and beach gear. Shop fast, stay stylish, and enjoy the
-              season with exclusive deals made just for you.
+            <p className="mt-3 pr-15 sm:text-xl">
+              Discover quiet and collaborative study rooms tailored for students
+              and learners. Browse, book, and manage spaces effortlessly with
+              real-time availability and secure scheduling.
             </p>
             <div className="space-x-3  mt-5">
-              <Link href={"/products"}>
+              <Link href={"/all-room"}>
                 <Button className="bg-linear-to-r from-teal-400 via-cyan-500 to-sky-500 text-white hover:bg-red-600">
-                  Show Products
+                  All Room
                 </Button>
               </Link>
               <Link href={"/aboutus"}>

@@ -1,3 +1,5 @@
+import { Button, Input } from "@heroui/react";
+
 export default function Footer() {
   function Logo() {
     return (
@@ -79,14 +81,14 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-[#22C7C8]">Stay Updated</h3>
 
             <div className="flex bg-white/5 rounded-2xl p-1 border border-white/10">
-              <input
+              <Input
                 placeholder="Enter email"
                 className="bg-transparent flex-1 px-4 outline-none text-sm"
               />
 
-              <button className="px-4 py-2 rounded-xl bg-[#22C7C8] text-[#003c3c] font-semibold hover:scale-105 transition">
+              <Button className="px-4 py-2 rounded-xl bg-[#22C7C8] text-[#003c3c] font-semibold hover:scale-105 transition">
                 Join
-              </button>
+              </Button>
             </div>
           </div>
         </div>

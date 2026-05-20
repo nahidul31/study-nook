@@ -21,11 +21,11 @@ import {
 } from "@gravity-ui/icons";
 // import { authClient } from "@/lib/auth-client";
 // import { toast } from "react-toastify";
-import { Avatar, Separator } from "@heroui/react";
+import { Avatar, Button, Separator } from "@heroui/react";
 
 const NAV_LINKS = [
   { href: "/", label: "Home", Icon: House },
-  { href: "/Room", label: "Room", Icon: CopyChevronRight },
+  { href: "/all-room", label: "Room", Icon: CopyChevronRight },
   { href: "/add-room", label: "Add Room", Icon: CirclePlus },
 ];
 
@@ -97,7 +97,7 @@ export default function Navbar() {
             {user ? (
               /* ── Logged IN — Avatar + Dropdown ── */
               <div className="relative hidden md:block">
-                <button
+                <Button
                   onClick={() => setDropdownOpen((p) => !p)}
                   className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md hover:shadow-amber-100 transition-all duration-150 cursor-pointer"
                 >
@@ -124,7 +124,7 @@ export default function Navbar() {
                   <ChevronDown
                     className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
                   />
-                </button>
+                </Button>
 
                 {/* Dropdown menu */}
                 {dropdownOpen && (
@@ -147,7 +147,7 @@ export default function Navbar() {
                       My Profile
                     </Link>
 
-                    <button
+                    <Button
                       onClick={() => {
                         setDropdownOpen(false);
                         handleLogOut();
@@ -156,7 +156,7 @@ export default function Navbar() {
                     >
                       <ArrowRightFromSquare className="w-4 h-4" />
                       Logout
-                    </button>
+                    </Button>
                   </div>
                 )}
               </div>
@@ -181,7 +181,7 @@ export default function Navbar() {
             )}
 
             {/* Hamburger — mobile only */}
-            <button
+            <Button
               onClick={() => setMobileOpen((p) => !p)}
               className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
               aria-label="Toggle menu"
@@ -191,7 +191,7 @@ export default function Navbar() {
               ) : (
                 <Bars className="w-5 h-5" />
               )}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -239,7 +239,7 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <button
+              <Button
                 onClick={() => {
                   setMobileOpen(false);
                 }}
@@ -247,7 +247,7 @@ export default function Navbar() {
               >
                 <ArrowRightFromSquare className="w-4 h-4" />
                 Logout
-              </button>
+              </Button>
             </>
           ) : (
             <div className="flex flex-col gap-2 pt-1">
