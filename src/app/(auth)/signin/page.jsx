@@ -12,7 +12,9 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Icon, InlineIcon } from "@iconify/react";
-// import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
+
 // import { toast } from "react-toastify";
 
 const LoginPage = () => {
@@ -20,36 +22,39 @@ const LoginPage = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
-    // const { data, error } = await authClient.signIn.email({
-    //   email: userData.email, // required
-    //   password: userData.password, // required
-    //   callbackURL: "/",
-    // });
-    // if (error) {
-    //   toast.error(error.message);
-    // }
-    // if (data) {
-    //   toast.success("Log In Successfully!");
-    //   e.currentTarget.reset();
-    // }
+    const { data, error } = await authClient.signIn.email({
+      email: userData.email, // required
+      password: userData.password, // required
+      callbackURL: "/",
+    });
+    if (error) {
+      toast.error(error.message);
+    }
+    if (data) {
+      toast.success("Log In Successfully!");
+      e.currentTarget.reset();
+    }
   };
   // with google-------------
   const handleGoogleLogin = async () => {
-    // const { data, error } = await authClient.signIn.social({
-    //   provider: "google",
-    //   callbackURL: "/",
-    // });
-    // if (error) {
-    //   toast.error(error.message);
-    // }
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+    if (error) {
+      toast.error(error.message);
+    }
+    if (data) {
+      toast.success("Log In Successfully!");
+    }
   };
   // with github------------
-  const handleGithubLogin = async () => {
-    // const { data, error } = await authClient.signIn.social({
-    //   provider: "github",
-    //   callbackURL: "/",
-    // });
-  };
+  // const handleGithubLogin = async () => {
+  //   // const { data, error } = await authClient.signIn.social({
+  //   //   provider: "github",
+  //   //   callbackURL: "/",
+  //   // });
+  // };
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Left — Form */}
@@ -141,14 +146,14 @@ const LoginPage = () => {
             Sign in with Google
           </Button>
           {/* GitHub Button */}
-          <Button
+          {/* <Button
             onClick={handleGithubLogin}
             className="w-full"
             variant="tertiary"
           >
             <Icon icon="mdi:github" />
             Sign in with GitHub
-          </Button>
+          </Button> */}
 
           {/* Register link */}
           <p className="text-xs text-center text-orange-700 opacity-70">

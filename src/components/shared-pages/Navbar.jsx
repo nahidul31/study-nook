@@ -18,15 +18,20 @@ import {
   ChevronDown,
   BookOpen,
   CirclePlus,
+  ListCheck,
+  Bookmark,
 } from "@gravity-ui/icons";
 // import { authClient } from "@/lib/auth-client";
 // import { toast } from "react-toastify";
 import { Avatar, Button, Separator } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
 
 const NAV_LINKS = [
   { href: "/", label: "Home", Icon: House },
   { href: "/all-room", label: "Room", Icon: CopyChevronRight },
   { href: "/add-room", label: "Add Room", Icon: CirclePlus },
+  { href: "/my-list", label: "My List", Icon: ListCheck },
+  { href: "/my-booking", label: "My Booking", Icon: Bookmark },
 ];
 
 export default function Navbar() {
@@ -35,19 +40,19 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // const {
-  //   data: session,
-  //   isPending,
-  //   error, //error object
-  //   refetch, //refetch the session
-  // } = authClient.useSession();
-  const user = "";
+  const {
+    data: session,
+    isPending,
+    error, //error object
+    refetch, //refetch the session
+  } = authClient.useSession();
+  const user = session?.user;
   // console.log(session);
 
   const handleLogOut = async () => {
-    // await authClient.signOut();
-    // toast.success("Log Out Successfully");
-    // redirect("/signin");
+    await authClient.signOut();
+    toast.success("Log Out Successfully");
+    redirect("/signin");
   };
 
   const isActive = (href) =>
@@ -101,13 +106,13 @@ export default function Navbar() {
                   onClick={() => setDropdownOpen((p) => !p)}
                   className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md hover:shadow-amber-100 transition-all duration-150 cursor-pointer"
                 >
-                  <div className="relative w-8 h-8 flex items-center">
+                  <div className="relative w-7 h-7 flex items-center  ">
                     {user?.image?.startsWith("https") ? (
                       <Image
                         src={user.image}
                         alt="profile"
                         fill
-                        sizes="40px"
+                        sizes="30px"
                         className="rounded-full object-cover border border-green-500"
                       />
                     ) : (
@@ -224,13 +229,6 @@ export default function Navbar() {
           {user ? (
             <>
               <div className="flex items-center gap-3 px-4 py-2">
-                {/* <Image
-                  src={MOCK_USER.avatar}
-                  alt={MOCK_USER.name}
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 rounded-full border-2 border-amber-200"
-                /> */}
                 <div>
                   <p className="text-sm font-semibold text-slate-800 m-0">
                     {user.name}
