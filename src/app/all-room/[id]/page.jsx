@@ -112,21 +112,23 @@ const RoomDetailsPage = async ({ params }) => {
               >
                 Book Now
               </Button>
+              {/* login user functionality */}
+              <div>
+                <Button
+                  variant="bordered"
+                  startContent={<Icon icon="material-symbols:edit" />}
+                >
+                  Edit
+                </Button>
 
-              <Button
-                variant="bordered"
-                startContent={<Icon icon="material-symbols:edit" />}
-              >
-                Edit
-              </Button>
-
-              <Button
-                color="danger"
-                variant="flat"
-                startContent={<Icon icon="material-symbols:delete-outline" />}
-              >
-                Delete
-              </Button>
+                <Button
+                  color="danger"
+                  variant="flat"
+                  startContent={<Icon icon="material-symbols:delete-outline" />}
+                >
+                  Delete
+                </Button>
+              </div>
             </div>
           </div>
         </div>

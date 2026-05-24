@@ -16,7 +16,7 @@ const AllRooms = async () => {
           <RoomCart key={room._id} room={room}></RoomCart>
         ))}
       </div>
-      {info.length > 6 && (
+      {info.length > 5 && (
         <Link href={"/all-room"}>
           <div className="flex items-center gap-2 justify-end mt-3 text-teal-600">
             <span>Show More</span>

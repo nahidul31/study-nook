@@ -28,13 +28,6 @@ export default function Banner() {
         {/* Content */}
         <div className="flex items-center h-full  text-white w-3xl text-center ">
           <div>
-            {/* <Chip
-              className="sm:text-xl  font-bold p-2 sm:px-4 mb-3"
-              color="warning"
-            >
-              Hot Deals 🔥Summer Sale 50% OFF
-            </Chip> */}
-
             <h1 className="text-4xl sm:text-6xl md:text-5xl lg:text-6xl font-bold">
               Find Your Perfect Study<br></br> Space, Anytime !
             </h1>
