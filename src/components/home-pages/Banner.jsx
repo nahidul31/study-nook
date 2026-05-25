@@ -26,12 +26,12 @@ export default function Banner() {
 
       <div className="relative z-10 flex items-center justify-center h-full gap-32">
         {/* Content */}
-        <div className="flex items-center h-full  text-white w-3xl text-center ">
+        <div className="flex items-center h-full  text-white w-3xl text-center px-5 ">
           <div>
             <h1 className="text-4xl sm:text-6xl md:text-5xl lg:text-6xl font-bold">
               Find Your Perfect Study<br></br> Space, Anytime !
             </h1>
-            <p className="mt-3 pr-15 sm:text-xl">
+            <p className="mt-3  sm:text-xl ">
               Discover quiet and collaborative study rooms tailored for students
               and learners. Browse, book, and manage spaces effortlessly with
               real-time availability and secure scheduling.
