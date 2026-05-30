@@ -4,9 +4,12 @@ import Link from "next/link";
 import RoomFilter from "@/components/filtter/RoomFilter";
 
 export default async function AllRooms() {
-  const res = await fetch("http://localhost:5000/rooms/latest", {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/latest`,
+    {
+      cache: "no-store",
+    },
+  );
 
   const info = await res.json();
 

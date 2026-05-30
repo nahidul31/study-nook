@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { Icon } from "@iconify/react";
 import DeleteOperation from "@/components/DeleteOperation/DeleteOperation";
 import EditOperation from "@/components/EditOperation/EditOperation";
+import BookingButton from "@/components/BookingAction/BookingButton";
 
 const RoomDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -15,7 +16,7 @@ const RoomDetailsPage = async ({ params }) => {
 
   const logInUser = session?.user?.email;
 
-  const res = await fetch(`http://localhost:5000/rooms/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/${id}`, {
     cache: "no-store",
   });
 
@@ -37,7 +38,7 @@ const RoomDetailsPage = async ({ params }) => {
     bookingCount = 0,
   } = info;
 
-  // ✅ safe owner check
+  //
   const isOwner = logInUser && userEmail && logInUser === userEmail;
 
   return (
@@ -120,11 +121,11 @@ const RoomDetailsPage = async ({ params }) => {
             {/* BUTTONS */}
             {/* BUTTONS */}
             <div className="mt-auto pt-10 flex gap-3 flex-wrap items-center">
-              <Button className="bg-[#22C7C8] text-white rounded-xl font-semibold px-6">
+              {/* <Button className="bg-[#22C7C8] text-white rounded-xl font-semibold px-6">
                 <Icon icon="material-symbols:calendar-month" width={18} />
                 Book Now
-              </Button>
-
+              </Button> */}
+              <BookingButton info={info} user={session?.user} />
               {isOwner && (
                 <div className="flex gap-2">
                   <EditOperation info={info}></EditOperation>
