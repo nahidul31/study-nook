@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import jp from "@/assets/img2/px1.jpg";
 const AllRoomDataPage = async () => {
-  const res = await fetch("http://localhost:5000/rooms");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms`);
   const info = await res.json();
   return (
     <div className=" ">
