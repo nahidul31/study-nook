@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Pencil } from "@gravity-ui/icons";
 import { Button, Modal } from "@heroui/react";
 import { Icon } from "@iconify/react";
@@ -39,12 +40,15 @@ const EditOperation = ({ info }) => {
       room.capacity = Number(room.capacity);
       room.hourlyRate = Number(room.hourlyRate);
       room.amenities = amenitiesData;
-
+      const { data: tokenData } = await authClient.token();
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/${_id}`,
         {
           method: "PATCH",
-          headers: { "content-type": "application/json" },
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
           body: JSON.stringify(room),
         },
       );

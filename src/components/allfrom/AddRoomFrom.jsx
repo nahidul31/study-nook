@@ -25,10 +25,12 @@ const AddRoomForm = () => {
       amenities: formData.getAll("amenities"),
       userEmail: user?.email,
     };
+    const { data: tokenData } = await authClient.token();
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(roomData),
     });

@@ -3,18 +3,23 @@ import { useState } from "react";
 import { Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 const CancelModal = ({ booking, user, onClose, onCancelled }) => {
   const [loading, setLoading] = useState(false);
 
   const handleCancel = async () => {
     setLoading(true);
+    const { data: tokenData } = await authClient.token();
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${booking._id}/cancel`,
         {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
           body: JSON.stringify({ userEmail: user?.email }),
         },
       );

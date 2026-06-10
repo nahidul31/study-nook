@@ -1,12 +1,20 @@
 import RoomCart from "@/components/home-pages/allRooms/RoomCart";
 import Image from "next/image";
 import jp from "@/assets/img2/px1.jpg";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export const dynamic = "force-dynamic"; // ← এই line টা যোগ করো
 
 const AllRoomDataPage = async () => {
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const token = tokenData?.token;
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms`, {
-    cache: "no-store", // ← এটাও যোগ করো
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {

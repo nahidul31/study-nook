@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import { authClient } from "@/lib/auth-client";
 
 const TIME_SLOTS = [
   "08:00",
@@ -61,9 +62,9 @@ const BookingModal = ({ info, user, onClose }) => {
       userName: user?.displayName || user?.name,
       image: room.image,
     };
-    console.log(room);
-    console.log(room.image);
-
+    // console.log(room);
+    // console.log(room.image);
+    const { data: tokenData } = await authClient.token();
     setLoading(true);
 
     try {
@@ -73,6 +74,7 @@ const BookingModal = ({ info, user, onClose }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
           },
 
           body: JSON.stringify(bookingData),

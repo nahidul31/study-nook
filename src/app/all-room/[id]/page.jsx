@@ -14,10 +14,18 @@ const RoomDetailsPage = async ({ params }) => {
     headers: await headers(),
   });
 
-  const logInUser = session?.user?.email;
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
 
+  // console.log("Token:", token);
+  // console.log("Token type:", typeof token);
+  const logInUser = session?.user?.email;
+  const token = tokenData?.token;
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/${id}`, {
-    cache: "no-store",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {

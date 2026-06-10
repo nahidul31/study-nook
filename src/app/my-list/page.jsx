@@ -12,13 +12,19 @@ const MyListPage = async () => {
   if (!session) {
     return <div className="text-center mt-10">Please login first</div>;
   }
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const token = tokenData?.token;
 
   const userEmail = session?.user?.email;
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/my-rooms/${userEmail}`,
     {
-      cache: "no-store",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     },
   );
 

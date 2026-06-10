@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { error } from "better-auth/api";
@@ -11,12 +12,14 @@ const DeleteOperation = ({ info }) => {
   const { _id, roomName } = info;
   const handelDeleteBtn = async () => {
     // try {
+    const { data: tokenData } = await authClient.token();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/${_id}`,
       {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
         },
       },
     );

@@ -26,13 +26,13 @@ import {
 import { Avatar, Button, Separator } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 
-const NAV_LINKS = [
-  { href: "/", label: "Home", Icon: House },
-  { href: "/all-room", label: "Room", Icon: CopyChevronRight },
-  { href: "/add-room", label: "Add Room", Icon: CirclePlus },
-  { href: "/my-list", label: "My List", Icon: ListCheck },
-  { href: "/my-booking", label: "My Booking", Icon: Bookmark },
-];
+// const NAV_LINKS = [
+//   { href: "/", label: "Home", Icon: House },
+//   { href: "/all-room", label: "Room", Icon: CopyChevronRight },
+//   { href: "/add-room", label: "Add Room", Icon: CirclePlus },
+//   { href: "/my-list", label: "My List", Icon: ListCheck },
+//   { href: "/my-booking", label: "My Booking", Icon: Bookmark },
+// ];
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -49,6 +49,18 @@ export default function Navbar() {
   const user = session?.user;
   // console.log(session);
 
+  const NAV_LINKS = [
+    { href: "/", label: "Home", Icon: House },
+    { href: "/all-room", label: "Room", Icon: CopyChevronRight },
+
+    ...(user
+      ? [
+          { href: "/add-room", label: "Add Room", Icon: CirclePlus },
+          { href: "/my-list", label: "My List", Icon: ListCheck },
+          { href: "/my-booking", label: "My Booking", Icon: Bookmark },
+        ]
+      : []),
+  ];
   const handleLogOut = async () => {
     await authClient.signOut();
     toast.success("Log Out Successfully");
@@ -143,21 +155,21 @@ export default function Navbar() {
                       </p>
                     </div>
 
-                    <Link
+                    {/* <Link
                       href="/profile"
                       onClick={() => setDropdownOpen(false)}
                       className="flex items-center gap-2.5 mx-1 px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-50 rounded-xl transition-colors no-underline"
                     >
                       <Person className="w-4 h-4 text-slate-400" />
                       My Profile
-                    </Link>
+                    </Link> */}
 
                     <Button
                       onClick={() => {
                         setDropdownOpen(false);
                         handleLogOut();
                       }}
-                      className="flex items-center gap-2.5 w-[calc(100%-8px)] mx-1 px-3 py-2.5 text-sm text-red-500 hover:bg-red-50 rounded-xl transition-colors cursor-pointer border-none bg-transparent"
+                      className="flex  gap-2.5 w-[calc(100%-8px)] mx-1 px-3 py-2.5 text-sm text-red-500 hover:bg-red-50 rounded-xl transition-colors cursor-pointer border-none bg-transparent"
                     >
                       <ArrowRightFromSquare className="w-4 h-4" />
                       Logout

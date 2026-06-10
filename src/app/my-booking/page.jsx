@@ -8,14 +8,19 @@ export default async function MyBookingsPage({}) {
   });
 
   const email = session?.user?.email;
-
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const token = tokenData?.token;
   let bookings = [];
 
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${email}`,
       {
-        cache: "no-store",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       },
     );
 
