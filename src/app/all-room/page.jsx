@@ -7,14 +7,14 @@ import { headers } from "next/headers";
 export const dynamic = "force-dynamic"; // ← এই line টা যোগ করো
 
 const AllRoomDataPage = async () => {
-  const tokenData = await auth.api.getToken({
-    headers: await headers(),
-  });
+  // const tokenData = await auth.api.getToken({
+  //   headers: await headers(),
+  // });
   const token = tokenData?.token;
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
+    // headers: {
+    //   authorization: `Bearer ${token}`,
+    // },
   });
 
   if (!res.ok) {
