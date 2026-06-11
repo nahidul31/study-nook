@@ -51,7 +51,7 @@ const MyBookingsClient = ({ bookings, user }) => {
         {/* Text */}
         <div className="absolute inset-0 z-20 flex items-center pl-20">
           <h1 className="text-3xl md:text-4xl font-bold text-white border-b-2">
-            My List
+            My Bookings
           </h1>
         </div>
       </div>
