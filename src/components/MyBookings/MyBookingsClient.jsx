@@ -23,7 +23,7 @@ const MyBookingsClient = ({ bookings, user }) => {
 
   if (bookingList.length === 0) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-20 text-center">
+      <div className="max-w-4xl mx-auto px-4 py-40 text-center">
         <Icon
           icon="material-symbols:calendar-month"
           className="text-6xl text-gray-300 mx-auto mb-4"

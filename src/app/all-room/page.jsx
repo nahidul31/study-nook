@@ -10,7 +10,7 @@ const AllRoomDataPage = async () => {
   // const tokenData = await auth.api.getToken({
   //   headers: await headers(),
   // });
-  const token = tokenData?.token;
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms`, {
     // headers: {
     //   authorization: `Bearer ${token}`,
@@ -26,7 +26,7 @@ const AllRoomDataPage = async () => {
   const info = await res.json();
 
   return (
-    <div className=" ">
+    <div className="mb-10 ">
       <div className="relative w-full h-40 sm:h-44 overflow-hidden ">
         <Image
           src={jp}

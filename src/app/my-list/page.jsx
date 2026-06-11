@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import React from "react";
 import jp from "@/assets/img2/px4.jpg";
 import Image from "next/image";
+import { Icon } from "@iconify/react";
 const MyListPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -29,6 +30,17 @@ const MyListPage = async () => {
   );
 
   const info = await res.json();
+  if (info.length === 0) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-40 text-center">
+        <Icon
+          icon="material-symbols:calendar-month"
+          className="text-6xl text-gray-300 mx-auto mb-4"
+        />
+        <p className="text-gray-400 text-lg">You have no list yet.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="mb-10">

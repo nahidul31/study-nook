@@ -25,7 +25,7 @@ export default async function AllRooms() {
 
       {info.length >= 6 && (
         <Link href="/all-rooms">
-          <div className="flex items-center gap-2 justify-end mt-3 text-teal-600">
+          <div className="flex items-center gap-2 justify-end  text-teal-600 px-4 ">
             <span>Show More</span>
             <ArrowRight />
           </div>
